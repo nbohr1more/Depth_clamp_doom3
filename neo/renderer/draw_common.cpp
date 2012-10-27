@@ -1174,13 +1174,13 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 
 	// patented depth-fail stencil shadows
 	if ( !external ) {
-		if (glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool()) {
+		if ( glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool() ) {
 			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK );
 			qglStencilOp( GL_KEEP, tr.stencilDecr, GL_KEEP );
 			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT );
 			qglStencilOp( GL_KEEP, tr.stencilIncr, GL_KEEP );
 			RB_DrawShadowElementsWithCounters( tri, numIndexes );
-		} else if(r_useTwoSidedStencil.GetBool() && glConfig.atiTwoSidedStencilAvailable) {
+		} else if( r_useTwoSidedStencil.GetBool() && glConfig.atiTwoSidedStencilAvailable ) {
 			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK, GL_KEEP, tr.stencilDecr, GL_KEEP );
 			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT, GL_KEEP, tr.stencilIncr, GL_KEEP );
 			GL_Cull( CT_TWO_SIDED );
@@ -1196,13 +1196,13 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 		}
 	} else {
 		// traditional depth-pass stencil shadows
-		if (glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool()) {
+		if ( glConfig.twoSidedStencilAvailable && r_useTwoSidedStencil.GetBool() ) {
 			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK );
 			qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilIncr );
 			qglActiveStencilFaceEXT( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT );
 			qglStencilOp( GL_KEEP, GL_KEEP, tr.stencilDecr );
 			RB_DrawShadowElementsWithCounters( tri, numIndexes );
-		} else if(r_useTwoSidedStencil.GetBool() && glConfig.atiTwoSidedStencilAvailable) {
+		} else if( r_useTwoSidedStencil.GetBool() && glConfig.atiTwoSidedStencilAvailable ) {
 			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_FRONT : GL_BACK, GL_KEEP, GL_KEEP, tr.stencilIncr );
 			qglStencilOpSeparateATI( backEnd.viewDef->isMirror ? GL_BACK : GL_FRONT, GL_KEEP, GL_KEEP, tr.stencilDecr );
 			GL_Cull( CT_TWO_SIDED );
