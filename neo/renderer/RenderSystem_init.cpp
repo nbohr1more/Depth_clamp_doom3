@@ -536,8 +536,8 @@ static void R_CheckPortableExtensions( void ) {
  		qglDepthBoundsEXT = (PFNGLDEPTHBOUNDSEXTPROC)GLimp_ExtensionPointer( "glDepthBoundsEXT" );
  	}
 
-	// LEITH: GL_NV_depth_clamp
-	glConfig.depthClampAvailable = R_CheckExtension( "NV_depth_clamp" );
+	// LEITH: GL_NV_depth_clamp or newer GL_ARB_depth_clamp
+	glConfig.depthClampAvailable = R_CheckExtension( "NV_depth_clamp" ) | R_CheckExtension( "ARB_depth_clamp" );
 }
 
 

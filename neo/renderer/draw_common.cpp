@@ -1279,7 +1279,7 @@ void RB_StencilShadowPass( const drawSurf_t *drawSurfs ) {
 
 	// LEITH: enable NVIDIA depth clamp
 	if ( glConfig.depthClampAvailable && r_useDepthClamp.GetBool() ) {
-		qglEnable( GL_DEPTH_CLAMP_NV );
+		qglEnable( GL_DEPTH_CLAMP );
 	}
 
 	RB_RenderDrawSurfChainWithFunction( drawSurfs, RB_T_Shadow );
@@ -1296,7 +1296,7 @@ void RB_StencilShadowPass( const drawSurf_t *drawSurfs ) {
 	
 	// LEITH: disable NVIDIA two sided stencil ops
 	if ( glConfig.depthClampAvailable && r_useDepthClamp.GetBool() ) {
-		qglDisable( GL_DEPTH_CLAMP_NV );
+		qglDisable( GL_DEPTH_CLAMP );
 	}
 
 	qglEnableClientState( GL_TEXTURE_COORD_ARRAY );
