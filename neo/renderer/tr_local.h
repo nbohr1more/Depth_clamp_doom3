@@ -643,6 +643,7 @@ typedef struct {
 
 	const viewEntity_t *currentSpace;		// for detecting when a matrix must change
 	idScreenRect		currentScissor;
+    float               currentZMin, currentZMax;
 	// for scissor clipping, local inside renderView viewport
 
 	viewLight_t *		vLight;

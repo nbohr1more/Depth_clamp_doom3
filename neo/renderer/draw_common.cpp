@@ -1103,8 +1103,12 @@ static void RB_T_Shadow( const drawSurf_t *surf ) {
 	}
 
 	// set depth bounds
-	if( glConfig.depthBoundsTestAvailable && r_useDepthBoundsTest.GetBool() ) {
-		qglDepthBoundsEXT( surf->scissorRect.zmin, surf->scissorRect.zmax );
+    // LEITH: only set if changed
+    if( glConfig.depthBoundsTestAvailable && r_useDepthBoundsTest.GetBool() &&
+        backEnd.currentZMin != surf->scissorRect.zmin && backEnd.currentZMax != surf->scissorRect.zmax) {
+            backEnd.currentZMin = surf->scissorRect.zmin;
+            backEnd.currentZMax = surf->scissorRect.zmax;
+		    qglDepthBoundsEXT( surf->scissorRect.zmin, surf->scissorRect.zmax );
 	}
 
 	// debug visualization
