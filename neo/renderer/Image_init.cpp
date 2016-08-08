@@ -1566,6 +1566,13 @@ idImage	*idImageManager::ImageFromFile( const char *_name, textureFilter_t filte
 	if ( name.Find( "fontImage_") >= 0 ) {
 		allowDownSize = false;
 	}
+	// HACK 2: Prevent fonts and guis from being affected by image_downsize
+	else if (name.Find( "fonts/") >= 0 ) {
+		allowDownSize = false;
+	}
+	else if (name.Find( "guis/assets/") >= 0 ) {
+		allowDownSize = false;
+	}
 
 	image->allowDownSize = allowDownSize;
 	image->repeat = repeat;
